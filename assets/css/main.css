@@ -527,16 +527,38 @@ code {
 }
 
 .site-footer {
-  padding: 0 1rem clamp(4.5rem, 8vw, 7rem);
+  position: relative;
+  overflow: hidden;
+  padding: clamp(3.8rem, 6vw, 5rem) clamp(1.2rem, 4vw, 3rem) clamp(4.8rem, 7vw, 6.2rem);
   text-align: center;
-  background: #ffffff;
-  color: #050505;
+  background: linear-gradient(180deg, #ffffff 0%, #f7fbff 26%, #f4f9ff 100%);
+  color: #202326;
+}
+
+.site-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0) 32rem),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.18) 32%),
+    url("../images/grid-rede.png") center / 39rem auto repeat;
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+.footer-inner {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 66rem);
+  margin: 0 auto;
 }
 
 .site-footer p {
   margin: 0;
-  font-size: clamp(1.2rem, 1.5vw, 1.55rem);
-  font-weight: 300;
+  color: #202326;
+  font-size: clamp(1.55rem, 2.1vw, 2.3rem);
+  font-weight: 400;
   line-height: 1.4;
 }
 
@@ -545,6 +567,68 @@ code {
   font-size: 1.05em;
   font-weight: 900;
   line-height: 1;
+}
+
+.footer-logos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(12rem, 1fr));
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.4rem, 3vw, 2rem);
+  margin-top: clamp(2.8rem, 5vw, 4.2rem);
+}
+
+.footer-logos a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(9.5rem, 13vw, 11.5rem);
+  padding: clamp(1.8rem, 3vw, 2.4rem);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(120, 135, 150, 0.16);
+  border-radius: 8px;
+  box-shadow:
+    0 26px 48px rgba(44, 65, 91, 0.18),
+    0 8px 18px rgba(44, 65, 91, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease, background 180ms ease;
+}
+
+.footer-logos img {
+  width: auto;
+  max-width: 100%;
+  max-height: 5.6rem;
+  object-fit: contain;
+  transition: filter 180ms ease, opacity 180ms ease, transform 180ms ease;
+}
+
+.footer-logos img[alt="PIPA"] {
+  max-height: 5.8rem;
+}
+
+.footer-logos img[alt="Casa dos Meninos"] {
+  max-height: 6.3rem;
+}
+
+.footer-logos img[alt="Coolab"] {
+  max-height: 4.8rem;
+}
+
+.footer-logos a:hover img,
+.footer-logos a:focus-visible img {
+  filter: grayscale(1);
+  opacity: 0.78;
+}
+
+.footer-logos a:hover,
+.footer-logos a:focus-visible {
+  background: #ffffff;
+  border-color: rgba(82, 146, 219, 0.22);
+  box-shadow:
+    0 30px 56px rgba(44, 65, 91, 0.2),
+    0 10px 20px rgba(44, 65, 91, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  transform: translateY(-3px);
 }
 
 .reveal {
@@ -777,6 +861,21 @@ code {
   .site-footer {
     padding-bottom: 3.5rem;
   }
+
+  .footer-logos {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+  }
+
+  .footer-logos a {
+    min-height: 8.5rem;
+    padding: 1.6rem;
+  }
+
+  .footer-logos img {
+    max-width: min(12rem, 42vw);
+    max-height: 5.5rem;
+  }
 }
 
 @media (max-width: 520px) {
@@ -795,5 +894,14 @@ code {
 
   .actions .button {
     width: 100%;
+  }
+
+  .footer-logos img {
+    max-width: min(13rem, 78vw);
+    max-height: 5.8rem;
+  }
+
+  .footer-logos img[alt="Coolab"] {
+    max-height: 4.4rem;
   }
 }
